@@ -2,4 +2,4 @@ mpi4py
 ipykernel
 pandas
 numpy
- 
+pytest

@@ -1,3 +1,7 @@
 twitter-450mb.json
 *.mp4
 COMP90024ENV/
+Assignment 1/__pycahce__/
+Assignment 1/.pytest_cache/
+Assignment 1/.vscode/
+Assignment 1/COMP90024A1/
