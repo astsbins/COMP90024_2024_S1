@@ -78,8 +78,33 @@ def test_process_chunk_part_file():
     tweets_dict = process_chunk(file_name, 1, os.path.getsize(file_name)-2)
     assert tweets_dict == {"2021-06-21T10" : [1,0.08], "2021-06-21T23" : [3,-0.44]}
                 
+def test_split_and_combine():
+    file_name = "test_tweet_4same.txt"
+    chunks = 4
+    file_size = os.path.getsize(file_name)
+    chunk_size = file_size/chunks
+    tweets_dict1 = process_chunk(file_name, chunk_size*0, chunk_size*1)
+    tweets_dict2 = process_chunk(file_name, chunk_size*1, chunk_size*2)
+    tweets_dict3 = process_chunk(file_name, chunk_size*2, chunk_size*3)
+    tweets_dict4 = process_chunk(file_name, chunk_size*3, chunk_size*4)
+    all_tweets_data = [tweets_dict1, tweets_dict2, tweets_dict3, tweets_dict4]
+    all_tweets_data_dict = combine_tweet_dicts(all_tweets_data)
+    assert all_tweets_data_dict == {"2021-06-21T07":[5,1.5]}
+        
     
     
+# # %%
+# file_name = "test_tweet_4same.txt"
+# chunks = 4
+# file_size = os.path.getsize(file_name)
+# chunk_size = file_size/chunks
+
+
+
+# %%
+
     
     
         
+
+# %%

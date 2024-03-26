@@ -6,7 +6,7 @@ import time
 # TODO: decide on outliers, dicts ints -3
 # %%
 start_time = time.time()
-df = pd.read_json("twitter-50mb.json")
+df = pd.read_json("twitter-450mb.json")
 read_time = time.time()
 # # %%
 # from tabulate import tabulate

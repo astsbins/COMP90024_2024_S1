@@ -65,6 +65,17 @@ def process_chunk(file_name, chunk_start, chunk_end):
             add_tweet_stats_to_dict(tweet_stats_dict,tweet_data)
     return tweet_stats_dict
 
+def combine_tweet_dicts(all_tweets_data):
+    all_tweets_data_dict = {}
+    for tweet_dict in all_tweets_data:
+        for key in tweet_dict.keys():
+            if key not in all_tweets_data_dict.keys():
+                all_tweets_data_dict[key] = tweet_dict[key]
+            else:
+                all_tweets_data_dict[key][0] += tweet_dict[key][0]
+                all_tweets_data_dict[key][1] += tweet_dict[key][1]
+    return all_tweets_data_dict
+
 def main():
     pass
 
