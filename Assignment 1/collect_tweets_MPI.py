@@ -2,6 +2,7 @@ from mpi4py import MPI
 import os
 import read_functions
 import time
+import cProfile
 
 comm = MPI.COMM_WORLD
 size = comm.Get_size()
@@ -23,9 +24,13 @@ all_tweets = comm.gather(tweet_dict, root=0)
 all_tweets_dict = {}
 if rank == 0:
     all_tweets_dict = read_functions.combine_tweet_dicts(all_tweets)
+    final_hour_stats = read_functions.get_stats(all_tweets_dict)
+    day_tweets = read_functions.create_day_tweet_dict(all_tweets_dict)
+    final_day_stats = read_functions.get_stats(day_tweets)
     end_time = time.time()
-print(all_tweets_dict)
-print(len(all_tweets_dict))
-if rank == 0:
+    print(all_tweets_dict)
+    print(len(all_tweets_dict))
+    print(final_hour_stats)
+    print(final_day_stats)
     print(end_time-start_time)
 

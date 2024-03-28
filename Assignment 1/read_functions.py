@@ -76,6 +76,40 @@ def combine_tweet_dicts(all_tweets_data):
                 all_tweets_data_dict[key][1] += tweet_dict[key][1]
     return all_tweets_data_dict
 
+def create_day_tweet_dict(all_tweets_data_dict):
+    day_tweet_dict = {}
+    # print(all_tweets_data_dict.keys())
+    for hour in all_tweets_data_dict.keys():
+        day = hour[:-3]
+        # print(hour, day)
+        if day in day_tweet_dict.keys():
+            day_tweet_dict[day][0] += all_tweets_data_dict[hour][0] 
+            day_tweet_dict[day][1] += all_tweets_data_dict[hour][1]
+        else:
+            day_tweet_dict[day] = all_tweets_data_dict[hour]
+    return day_tweet_dict
+    
+
+
+def get_stats(all_tweets_data_dict):
+    most_active_hour = 0
+    most_active_hour_tweets = 0
+    highest_sentiment_hour = 0
+    highest_sentiment_value = 0
+    for date in all_tweets_data_dict.keys():
+        if all_tweets_data_dict[date][0]>most_active_hour_tweets:
+            most_active_hour = date
+            most_active_hour_tweets = all_tweets_data_dict[date][0]
+        if all_tweets_data_dict[date][1]>highest_sentiment_value:
+            highest_sentiment_hour = date
+            highest_sentiment_value = all_tweets_data_dict[date][1]
+            
+    return (most_active_hour,
+            most_active_hour_tweets,
+            highest_sentiment_hour,
+            highest_sentiment_value)
+
+
 def main():
     pass
 
