@@ -55,7 +55,7 @@ def add_tweet_stats_to_dict(tweets_dict,tweet_data):
 def process_chunk(file_name, chunk_start, chunk_end):
     tweet_stats_dict = {}
     seek_head = chunk_start
-    with open(file_name, encoding='utf-8') as tweet_file:
+    with open(file_name, 'r', encoding='utf-8') as tweet_file:
         while seek_head < chunk_end:
             full_tweet = read_line(tweet_file, seek_head)
             seek_head = tweet_file.tell()
